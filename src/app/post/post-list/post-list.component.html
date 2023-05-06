@@ -1,10 +1,11 @@
+<h3>Post List</h3>
+<a routerLink="/post/add" class="btn btn-primary">Add Post</a>
 <table class="table table-striped" *ngIf="postList$ | async as postsList">
     <thead>
         <tr>
             <th>Id</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Action</th>
+            <th>Title</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
