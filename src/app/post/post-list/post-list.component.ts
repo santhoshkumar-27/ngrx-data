@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/shared/modal/modal';
 import { PostService } from 'src/app/shared/service/post/post.service';
 
 @Component({
@@ -14,5 +15,8 @@ export class PostListComponent implements OnInit {
     
   }
   ngOnInit(): void {
+  }
+  onDelete(post: Post) {
+   this.postService.delete(post)
   }
 }

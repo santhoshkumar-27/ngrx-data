@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Update } from '@ngrx/entity';
 import { Post } from 'src/app/shared/modal/modal';
 import { PostService } from 'src/app/shared/service/post/post.service';
@@ -20,6 +20,7 @@ export class PostAddComponent implements OnInit {
     private fb: FormBuilder,
     private route: Router,
     private postService: PostService,
+    private activatedRoute: ActivatedRoute,
   ) {
   }
 
@@ -28,20 +29,32 @@ export class PostAddComponent implements OnInit {
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
     });
+    if (this.route.url.includes('add')) {
+      this.invokeSave = true;
+    } else {
+      this.id = this.activatedRoute.snapshot.params['id'];
+      this.postService.entities$.subscribe((res: any) => {
+        this.patchForm(res.find((list: Post) => list.id == this.id))
+      })
+    }
   }
   get f(): any {
     return this.form.controls;
   }
-  patchForm() {
+  patchForm(data: Post) {
     this.form.patchValue({
-      title: this.fromStatePostDataHolder.title,
-      description: this.fromStatePostDataHolder.description
+      title: data.title,
+      description: data.description
     })
   }
   onSubmit() {
     this.submitted = true;
     if (this.form.invalid) { return };
-    this.saveDataOnState();
+    if (this.invokeSave) {
+      this.saveDataOnState();
+    } else {
+      this.updateDataOnState()
+    }
   }
 
   saveDataOnState() {
@@ -51,6 +64,13 @@ export class PostAddComponent implements OnInit {
       this.route.navigate(['post', 'list'])
     })
   }
+  updateDataOnState() {
+    const payload : Update<Post> = {changes: {...this.form.value, id: this.id}, id: this.id};
+    this.postService.update(payload).subscribe((res: any) => {
+      this.route.navigate(['post', 'list'])
+    })
+  }
   ngOnDestroy(): void {
+    
   }
 }

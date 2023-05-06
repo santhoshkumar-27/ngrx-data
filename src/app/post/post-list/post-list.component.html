@@ -6,6 +6,7 @@
             <th>Id</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -13,6 +14,10 @@
             <td>{{list.id}}</td>
             <td>{{list.title}}</td>
             <td>{{list.description}}</td>
+            <td>
+                <a [routerLink]="['/post', 'edit', list.id]" class="btn btn-primay me-2">Edit Post</a>
+                <a (click)="onDelete(list)" class="btn btn-primay me-2">Delete Post</a>
+            </td>
         </tr>
     </tbody>
 </table>

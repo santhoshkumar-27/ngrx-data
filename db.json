@@ -1,33 +1,17 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "description": "typicode"
-    },
-    {
       "title": "asdf",
-      "description": "asdf",
+      "description": "asdfdsf",
       "id": 2
     },
     {
       "title": "asdf",
       "description": "sdf",
       "id": 3
-    },
-    {
-      "title": "asdf",
-      "description": "sdf",
-      "id": 4
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }
