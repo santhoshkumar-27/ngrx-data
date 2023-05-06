@@ -7,13 +7,12 @@ import { PostService } from 'src/app/shared/service/post/post.service';
   styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit {
-
+  postList$ =  this.postService.entities$;
   constructor(
     private postService: PostService,
   ) {
     
   }
   ngOnInit(): void {
-    this.postService.getAll()
   }
 }

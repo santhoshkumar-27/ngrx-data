@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { PostResolver } from './shared/resolver/post.resolver';
 
 const routes: Routes = [
   {
@@ -15,6 +16,9 @@ const routes: Routes = [
       {
         path: 'post',
         title: 'Post',
+        resolve: {
+          post: PostResolver,
+        },
         loadChildren: () => import('./post/post.module').then(m => m.PostModule)
       },
       {
