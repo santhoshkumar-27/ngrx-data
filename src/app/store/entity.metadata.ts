@@ -9,5 +9,5 @@ const entityMetadata: EntityMetadataMap = {
 }
 
 export const entityConfig: EntityDataModuleConfig = {
-    entityMetadata,
+    // entityMetadata,
 }

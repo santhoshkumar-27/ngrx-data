@@ -21,7 +21,7 @@ import { PostDataService } from './shared/service/post/post-data.service';
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    EntityDataModule.forRoot(entityConfig),
+    EntityDataModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: true
     }),
@@ -31,9 +31,9 @@ import { PostDataService } from './shared/service/post/post-data.service';
 })
 export class AppModule {
   constructor(
-    entityDataService: EntityDataService,
-    postDataService: PostDataService,
+    // entityDataService: EntityDataService,
+    // postDataService: PostDataService,
   ) {
-    entityDataService.registerService(POST_ENTITY_NAME, postDataService)
+    // entityDataService.registerService(POST_ENTITY_NAME, postDataService)
    }
 }
