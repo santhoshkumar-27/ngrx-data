@@ -47,7 +47,9 @@ export class PostAddComponent implements OnInit {
   saveDataOnState() {
     // this.route.navigate(['post'])
     const payload : Post = this.form.value;
-    this.postService.add(payload)
+    this.postService.add(payload).subscribe((res: any) => {
+      this.route.navigate(['post', 'list'])
+    })
   }
   ngOnDestroy(): void {
   }
